@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web App</title>
+</head>
+<link rel="stylesheet" href="/static/style.css">
+<body>
+    <div class="container">
+        <div class="title">My Notes</div>
+
+        <div class="cards">
+            {% for note in notes %}
+            <div class="card">
+                <div class="icons">
+                    <a href="/delete/{{ note['_id'] }}" class="icon del">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                    <a href="#" class="icon edit" data-id="{{ note['_id'] }}">
+                        <i class="fa-solid fa-edit"></i>
+                    </a>
+                </div>
+                <div class="card_title">{{ note['title'] }}</div>
+                <div class="content">{{ note['content'] }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <button title="Add Note" class="add-btn">+</button>
+    
+    <div class="wrapper">
+        <form id="noteForm" action="/add" method="POST">
+            <input type="hidden" name="note_id" id="note_id">
+            <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
+            <div class="inputs">
+                <div class="input">
+                    <label for="textBox">Title</label>
+                    <input type="text" name="title" id="textBox">
+                </div>
+                <div class="input">
+                    <label for="edit_content">Content</label>
+                    <textarea name="content" class="edit_content" id="edit_content"></textarea>
+                </div>
+            </div>
+            <div class="btns">
+                <button type="submit" title="Done"><i class="fa-solid fa-check"></i></button>
+            </div>
+        </form>
+    </div>
+
+
+<script src="/static/script.js"></script>
+</body>
+</html
